@@ -1,115 +1,176 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Head from 'next/head';
+import Link from 'next/link';
+import { useState } from 'react';
 
 export default function Home() {
+  const [copied, setCopied] = useState(false);
+
+  const copyInviteCode = () => {
+    navigator.clipboard.writeText('85486119').then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000); // 2秒后恢复
+    });
+  };
+
   return (
-    <div
-      className={`${geistSans.className} ${geistMono.className} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-    >
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/pages/index.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+    <>
+      <Head>
+        <title>Web3 入门引导</title>
+      </Head>
+
+      <main
+        style={{
+          minHeight: '100vh',
+          padding: '40px 20px',
+          background: 'linear-gradient(to bottom, #0f0c29, #302b63, #24243e)',
+          color: 'white',
+          fontFamily: 'sans-serif',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <h1 style={{ fontSize: '40px', marginBottom: '40px', textAlign: 'center' }}>
+          Web3 新手入门引导
+        </h1>
+
+        {/* VPN 推荐 + QQ 群 */}
+        <section style={sectionStyle}>
+          <h2 style={titleStyle}>步骤 0：下载 VPN 工具</h2>
+          <p style={descStyle}>
+            为确保能访问 MetaMask、Binance 等网站，建议先配置科学上网工具。
+            快连 VPN 我已经用了 6 年了，稳定、不跑路，
+            Web3 必备神器，免费 2 小时的使用足够你下载钱包和交易所了。
+          </p>
+
+          <h2 style={titleStyle}>🚀 解锁自由上网，从这里开始！</h2>
+          <p style={descStyle}>
+            想访问 Google、YouTube、MetaMask 官网？只需一个轻便好用的工具，你将发现一个全新的世界！
+          </p>
+
+          <p style={descStyle}>✅ <strong>推荐浏览器：</strong>Chrome</p>
+
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
+            href="https://bitbucket.org/letsgo666/letsgogo_4/src/main/"
             target="_blank"
             rel="noopener noreferrer"
+            style={buttonStyle}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+            📥 Bitbucket 下载链接（推荐）
           </a>
+
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
+            href="https://github.com/LetsgoNetwork/LetsGo_2/blob/main/README.md"
             target="_blank"
             rel="noopener noreferrer"
+            style={buttonStyle}
           >
-            Read our docs
+            🔗 GitHub 备用链接
           </a>
-        </div>
+
+          <p style={{ ...descStyle, marginTop: '16px' }}>
+            安装完成后，打开软件并填写邀请码：
+            <span
+              onClick={() => alert('邀请码已复制：85486119')}
+              style={{
+                cursor: 'pointer',
+                color: '#ffdd57',
+                fontWeight: 'bold',
+                fontSize: '18px',
+                marginLeft: '6px',
+                textDecoration: 'underline',
+              }}
+              title="点击复制邀请码"
+            >
+              85486119
+            </span>
+            ，即可
+            <strong style={{ color: '#00ffaa', fontSize: '20px', marginLeft: '6px' }}>
+              额外获得 <u>3 天免费会员</u>！
+            </strong>
+          </p>
+
+          <hr style={{ margin: '30px 0', borderColor: '#555' }} />
+
+          <h3 style={{ ...titleStyle, fontSize: '22px' }}>💬 官方交流群</h3>
+          <p style={descStyle}>
+            QQ 群号：
+            <a
+              href="tencent://groupwpa/?subcmd=all&param=464249094"
+              style={{ color: '#8b5cf6', textDecoration: 'underline' }}
+            >
+              <strong>464249094</strong>
+            </a>
+            （点击添加 → 推荐进群）
+          </p>
+
+          <img
+            src="/web.JPG"
+            alt="QQ群二维码"
+            style={{
+              width: '480px',
+              height: '840px',
+              borderRadius: '12px',
+              border: '2px solid #8b5cf6',
+              marginTop: '16px',
+            }}
+          />
+        </section>
+
+        {/* 跳转按钮区块 */}
+        <section style={{ ...sectionStyle, textAlign: 'center' }}>
+          <h2 style={{ ...titleStyle, textAlign: 'center' }}>开始你的 Web3 之旅</h2>
+
+          <Link href="/step1-wallet">
+            <div style={buttonStyle}>步骤 1：下载并安装钱包</div>
+          </Link>
+
+          <Link href="/step2-exchange">
+            <div style={buttonStyle}>步骤 2：注册交易所账号</div>
+          </Link>
+
+          <Link href="/step3-withdraw">
+            <div style={buttonStyle}>步骤 3：提币到钱包</div>
+          </Link>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    </>
   );
 }
+
+// 样式
+const sectionStyle = {
+  maxWidth: '800px',
+  width: '100%',
+  marginBottom: '60px',
+  background: 'rgba(255, 255, 255, 0.05)',
+  padding: '24px',
+  borderRadius: '16px',
+  boxShadow: '0 0 12px rgba(0, 0, 0, 0.3)',
+};
+
+const titleStyle = {
+  fontSize: '28px',
+  marginBottom: '10px',
+};
+
+const descStyle = {
+  color: '#ccc',
+  marginBottom: '16px',
+  fontSize: '16px',
+  lineHeight: '1.6',
+};
+
+const buttonStyle = {
+  display: 'inline-block',
+  backgroundColor: '#8b5cf6',
+  color: 'white',
+  padding: '14px 28px',
+  borderRadius: '10px',
+  textDecoration: 'none',
+  fontWeight: 'bold',
+  margin: '10px 8px',
+  cursor: 'pointer',
+  transition: 'transform 0.2s ease',
+  textAlign: 'center',
+};
